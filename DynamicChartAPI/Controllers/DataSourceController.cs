@@ -23,13 +23,13 @@ namespace DynamicChartAPI.Controllers
 					SqlCommand command = new SqlCommand();
 					command.Connection = connection;
 
-					// Veri kaynağı türüne göre SQL komutunu ayarla
+					
 					switch (request.DataSourceType.ToLower())
 					{
 						case "function":
 							if (request.DataSourceName.Equals("GetTotalSalesInDateRange", StringComparison.OrdinalIgnoreCase))
 							{
-								// Function için örnek parametreler
+								
 								command.CommandText = $"SELECT * FROM {request.DataSourceName}(@StartDate, @EndDate)";
 								command.CommandType = CommandType.Text;
 								command.Parameters.AddWithValue("@StartDate", DateTime.Parse("2024-01-01"));
@@ -43,7 +43,7 @@ namespace DynamicChartAPI.Controllers
 						case "stored_procedure":
 							if (request.DataSourceName.Equals("GetSalesByProduct", StringComparison.OrdinalIgnoreCase))
 							{
-								// Stored procedure için örnek parametreler
+								
 								command.CommandText = request.DataSourceName;
 								command.CommandType = CommandType.StoredProcedure;
 								command.Parameters.AddWithValue("@ProductName", "Product A");
