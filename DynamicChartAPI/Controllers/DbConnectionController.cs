@@ -11,7 +11,7 @@ namespace DynamicChartAPI.Controllers
 		[HttpPost("Connect")]
 		public IActionResult Connect([FromBody] DbConnectionRequest request)
 		{
-			// Dinamik olarak bağlantı dizesini oluştur, Windows Authentication kullan
+			
 			var connectionString = $"Server={request.ServerName};Database={request.DbName};Integrated Security=True;TrustServerCertificate=True;";
 
 			try
@@ -20,13 +20,13 @@ namespace DynamicChartAPI.Controllers
 				{
 					connection.Open();  // Bağlantıyı dene
 
-					// Bağlantı başarılı
+					
 					return Ok(new { message = "Connection successful!" });
 				}
 			}
 			catch (Exception ex)
 			{
-				// Bağlantı başarısız
+				
 				return BadRequest(new { message = "Connection failed!", error = ex.Message });
 			}
 		}
